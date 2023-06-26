@@ -1,0 +1,133 @@
+<html>
+
+<head>
+    <style type="text/css">
+        * {
+            color: black;
+            text-align: center;
+            font-size: 14pt;
+            margin-top: 5px;
+        }
+
+        button {
+            padding: 8px 15px;
+            font-size: 14pt;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div>
+            <label>ID</label>
+            <input type="number" id="ID" min="0" style="margin-right: -20px; height: 30px" />
+        </div>
+
+        <div>
+            <label>Name</label>
+            <input type="text" id="Name" style="margin-right: 0px; height: 30px" />
+        </div>
+
+        <div>
+            <label>B-Day</label>
+            <input type="date" id="BDay" style="margin-right: 5px; height: 30px; width: 240px" />
+        </div>
+    </div>
+    <div style="padding: 2px">
+        <button onclick="Get()">GET</button>
+        <button onclick="Post()">POST</button>
+        <button onclick="Put()">PUT</button>
+        <button onclick="Delete()">DELETE</button>
+    </div>
+    <div id="result" style="font-size: 14pt; margin-top: 5px;"></div>
+
+    <script>
+        function Get() {
+            console.log('GET');
+            fetch('http://localhost:5000/api/db', {
+                    method: 'GET',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    return response.json();
+                })
+                .then((pdata) => {
+                    console.log('pdata', pdata);
+                    result.innerHTML = '';
+                    pdata.forEach(el => {
+                        result.innerHTML += (el.id + '. ' + el.name + ' ' + el.bday + '</br/>');
+                    });
+                });
+        }
+
+        function Post() {
+            console.log('POST');
+            fetch('http://localhost:5000/api/db', {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id: parseInt(ID.value, 10),
+                        name: Name.value,
+                        bday: BDay.value
+                    })
+                }).then(response => {
+                    return response.json();
+                })
+                .then((pdata) => {
+                    console.log('POST.pdata', pdata);
+                })
+        }
+
+        function Put() {
+            console.log('PUT');
+            fetch('http://localhost:5000/api/db', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id: parseInt(ID.value, 10),
+                        name: Name.value,
+                        bday: BDay.value
+                    })
+                }).then(response => {
+                    return response.json();
+                })
+                .then((pdata) => {
+                    console.log('PUT.pdata', pdata);
+                })
+        }
+
+        function Delete() {
+            console.log('Delete');
+            fetch('http://localhost:5000/api/db', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id: ID.value
+                    })
+                }).then(response => {
+                    return response.json();
+                })
+                .then((pdata) => {
+                    console.log('DELETE.pdata', pdata);
+                })
+        }
+    </script>
+
+</body>
+
+</html>

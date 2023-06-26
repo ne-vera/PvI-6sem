@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <style type="text/css">
+        * {
+            color: black;
+            text-align: center;
+            font-size: 14pt;
+            margin-top: 5px;
+        }
+        
+        button {
+            background-color: lavender;
+            padding: 8px 15px;
+            font-size: 14pt;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div>
+            <form action="http://localhost:5000/" method="POST">
+                <div>
+                    <label>Sender:</label>
+                    <input type="email" name="sender" required style="margin-right: -18px" /><br />
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input type="password" name="password" required /><br />
+                </div>
+                <div>
+                    <label>Receiver:</label>
+                    <input type="email" name="receiver" required style="margin-right: -5px" /><br />
+                </div>
+                <div>
+                    <label>Message:</label>
+                    <input type="text" name="message" required style="margin-right: -5px" /><br />
+                </div>
+                <button type="submit" style="margin-right: -85px">Send</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

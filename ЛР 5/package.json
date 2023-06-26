@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "config": "^3.3.9",
+    "nodemailer": "^6.9.1"
+  },
+  "name": "m0603",
+  "version": "1.0.1",
+  "description": "package for lab5",
+  "main": "m06-03.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
